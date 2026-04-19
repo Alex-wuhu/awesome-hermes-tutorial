@@ -1,16 +1,42 @@
-# React + Vite
+# Build Your First Hermes Agent
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An open-source, step-by-step tutorial for building AI agents with [Hermes Agent](https://github.com/NousResearch/hermes-agent).
 
-Currently, two official plugins are available:
+**Live site:** [hermes-novita.vercel.app](https://hermes-novita.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What's Inside
 
-## React Compiler
+### Step-by-Step Tutorial
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+A hands-on guide covering the full setup flow:
 
-## Expanding the ESLint configuration
+1. **Install Hermes Agent** — one-liner installer for Linux, macOS, and WSL2
+2. **Setup Your Hermes Agent** — configure your LLM provider and model
+3. **Connect a Messaging Channel** — chat with Hermes via Telegram, Discord, Slack, etc.
+4. **Start Your First Conversation** — launch Hermes and start building
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Use Case Guides
+
+Ready-to-use templates for real-world agents:
+
+- **Email Agent** — two methods to automate email management: the built-in Himalaya skill (simple) or Google Workspace CLI (advanced, unlocks Gmail + Calendar + Sheets + Docs)
+- **Marketing Agent** — install the [marketingskills](https://github.com/coreyhaines31/marketingskills) skill pack for 30+ marketing capabilities including CRO, copywriting, SEO, paid ads, and launch strategy
+
+### Pro Tips
+
+Quick tips for getting the most out of Hermes — updating, debugging, and daily workflow tricks.
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+## License
+
+MIT
+
+---
+
+Powered by [Novita AI](https://novita.ai)
