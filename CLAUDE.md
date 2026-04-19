@@ -6,8 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Tutorial website: "Build Your First Hermes Agent with Novita AI". Multi-page static site built with Vite + React + React Router, deployed to Vercel.
 
-- **Live URL**: https://hermes-novita.vercel.app
-- **Vercel project**: alexs-projects-86c60082/hermes-novita
+- **Live URL**: https://awesome-hermes-tutorial.vercel.app
+- **Vercel project**: alexs-projects-86c60082/awesome-hermes-tutorial
 
 ## Commands
 

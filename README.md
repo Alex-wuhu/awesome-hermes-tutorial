@@ -2,7 +2,7 @@
 
 An open-source, step-by-step tutorial for building AI agents with [Hermes Agent](https://github.com/NousResearch/hermes-agent).
 
-**Live site:** [hermes-novita.vercel.app](https://hermes-novita.vercel.app)
+**Live site:** [awesome-hermes-tutorial.vercel.app](https://awesome-hermes-tutorial.vercel.app)
 
 ## What's Inside
 
