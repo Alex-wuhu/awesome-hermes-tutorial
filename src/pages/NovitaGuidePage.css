@@ -1,1 +1,450 @@
-/* NovitaGuidePage — mostly uses shared section/step/code-block styles */
+/* ═══════════════════════════════════════════
+   Novita Guide — Workshop Page Styles
+   ═══════════════════════════════════════════ */
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hero-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.hero-btn--primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.hero-btn--secondary {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+/* ── Agenda Grid ── */
+
+.agenda-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.agenda-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.agenda-item:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.agenda-item--highlight {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.agenda-item--highlight:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(232, 147, 10, 0.12);
+}
+
+.agenda-time {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.agenda-item--highlight .agenda-time {
+  background: rgba(232, 147, 10, 0.2);
+}
+
+.agenda-content h4 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+}
+
+.agenda-content p {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Info Cards (Intro section) ── */
+
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.info-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.info-card-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.info-card h4 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.info-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ── Platform Cards ── */
+
+.platform-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.platform-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.platform-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.platform-card-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--indigo);
+  background: var(--indigo-dim);
+  padding: 3px 8px;
+  border-radius: 5px;
+  margin-bottom: 14px;
+  align-self: flex-start;
+}
+
+.platform-card h4 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+}
+
+.platform-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+.platform-link {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--indigo);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.platform-link:hover {
+  opacity: 0.7;
+}
+
+/* ── Feature Grid (Hermes Overview) ── */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.feature-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.feature-item h4 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+}
+
+.feature-item p {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* ── Accent Sections ── */
+
+.section--accent {
+  background: var(--bg-elevated);
+}
+
+/* ── Use Case Cards ── */
+
+.usecase-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.usecase-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 36px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.usecase-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 32px rgba(232, 147, 10, 0.1);
+  transform: translateY(-3px);
+}
+
+.usecase-card-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.usecase-card-icon {
+  font-size: 42px;
+  margin-bottom: 18px;
+}
+
+.usecase-card h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 10px;
+}
+
+.usecase-card p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 20px;
+  flex: 1;
+}
+
+.usecase-card-link {
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.step-note {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  font-style: italic;
+  margin-top: 8px;
+}
+
+/* ── Share Section ── */
+
+.share-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.share-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 32px 24px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.share-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.share-icon {
+  font-size: 36px;
+  margin-bottom: 14px;
+}
+
+.share-card h4 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.share-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ── Quick Links ── */
+
+.section--links {
+  background: var(--bg-elevated);
+  padding: 48px 0;
+}
+
+.section--links h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 16px;
+}
+
+.quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.quick-links a {
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--indigo);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.quick-links a:hover {
+  opacity: 0.7;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-btn {
+    justify-content: center;
+  }
+
+  .agenda-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .platform-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .share-options {
+    grid-template-columns: 1fr;
+  }
+
+  .usecase-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-links {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

@@ -135,85 +135,168 @@ then help me with my marketing tasks — I'll describe
 what I need, and you pick the best skill and walk me
 through it step by step.`}
               />
-              <div className="step-img-placeholder">Screenshot coming soon</div>
+              <figure className="step-screenshot">
+                <img src="/images/marketing_agent/marketing-agent-installskills-sucess.png" alt="Marketing skills installed successfully" />
+              </figure>
             </Step>
           </div>
         </div>
       </section>
 
-      {/* ── Use Cases ── */}
+      {/* ── Try It: Novita AI Content ── */}
       <section className="section">
         <div className="section-inner">
-          <span className="section-tag">Examples</span>
-          <h2>Real-World Use Cases</h2>
+          <span className="section-tag">Try It Now</span>
+          <h2>Create Content for Novita AI</h2>
           <p className="section-lead">
-            Here are some practical prompts to get you started. Just paste
-            them into Hermes after installing the skill pack.
+            Let&apos;s put the skills to work — copy any prompt below into Hermes
+            and watch your agent produce real marketing content in seconds.
           </p>
 
           <div className="use-cases">
+            {/* ── Copywriting ── */}
             <div className="use-case">
-              <h3>Optimize a Landing Page</h3>
+              <div className="use-case-label">1 · Copywriting</div>
+              <h3>Rewrite Landing Page Hero Copy</h3>
               <p>
-                Have Hermes audit your landing page and suggest conversion
-                improvements using the <strong>page-cro</strong> skill.
+                <strong>Copywriting</strong> is the craft of writing text that drives action
+                — headlines that grab attention, CTAs that get clicks, taglines that stick.
+                Unlike blog posts or docs, every word serves a conversion goal.
+              </p>
+              <p>
+                Use the <strong>copywriting</strong> skill to generate
+                audience-specific hero copy for novita.ai.
               </p>
               <CodeBlock
                 language="text"
-                code={`Review my landing page at https://example.com and give me
-a full CRO audit. Focus on headline clarity, CTA placement,
-social proof, and signup friction. Provide specific copy
-rewrites and layout suggestions.`}
+                code={`Visit https://novita.ai and read the current hero
+section. Then write 3 alternative versions of the
+headline + subheadline. Each version should target
+a different audience:
+1. Indie hackers building AI side projects
+2. Enterprise teams replacing OpenAI
+3. ML engineers who need GPU compute
+Keep each headline under 10 words.`}
               />
-              <div className="step-img-placeholder">Screenshot coming soon</div>
+
+              <div className="result-label">Agent Output</div>
+              <div className="result-current">
+                <div className="result-current-tag">Current</div>
+                <h4>AI &amp; Agent Cloud for Developers</h4>
+                <p>
+                  Ship models and agents in minutes, call 200+ models with one API,
+                  and run secure, fast agent sandboxes — developer-first and startup-friendly.
+                </p>
+              </div>
+
+              <div className="result-alternatives">
+                <div className="result-alt">
+                  <div className="result-alt-audience">Indie Hackers</div>
+                  <h4>Ship your AI side project tonight</h4>
+                  <p>
+                    200+ models, one OpenAI-compatible endpoint, pay-per-token pricing.
+                    No subscription, no credit card gate — just plug in and ship.
+                  </p>
+                  <span className="result-alt-lever">Speed + Simplicity</span>
+                </div>
+                <div className="result-alt">
+                  <div className="result-alt-audience">Enterprise</div>
+                  <h4>One API to replace OpenAI</h4>
+                  <p>
+                    Access 200+ models — GLM, DeepSeek, Qwen, Llama — through an
+                    OpenAI-compatible endpoint. Cut costs and diversify your model supply chain.
+                  </p>
+                  <span className="result-alt-lever">Cost + De-risk</span>
+                </div>
+                <div className="result-alt">
+                  <div className="result-alt-audience">ML Engineers</div>
+                  <h4>GPU instances, not GPU headaches</h4>
+                  <p>
+                    Launch H100, A100, and 4090 instances in minutes — or go serverless
+                    and pay only when your models run.
+                  </p>
+                  <span className="result-alt-lever">Compute without pain</span>
+                </div>
+              </div>
             </div>
 
+            {/* ── SEO ── */}
             <div className="use-case">
-              <h3>Write a Cold Email Sequence</h3>
+              <div className="use-case-label">2 · SEO</div>
+              <h3>Run an SEO Audit on novita.ai</h3>
               <p>
-                Generate a multi-step outreach sequence using the{' '}
-                <strong>cold-email</strong> and <strong>email-sequence</strong> skills.
+                Use the <strong>seo-audit</strong> and <strong>ai-seo</strong> skills
+                to get actionable SEO improvements.
               </p>
               <CodeBlock
                 language="text"
-                code={`Write a 5-email cold outreach sequence for my SaaS product.
-Target audience: startup CTOs. Goal: book a demo call.
-Include subject lines, body copy, and follow-up timing
-for each email.`}
+                code={`Run a full SEO audit on https://novita.ai. Check:
+- Title tags, meta descriptions, and H1 structure
+- Page load speed and Core Web Vitals issues
+- Internal linking and site architecture
+- Content gaps vs competitors (together.ai, replicate)
+- Schema markup (Organization, Product, FAQ)
+Prioritize the top 5 fixes by traffic impact.`}
               />
-              <div className="step-img-placeholder">Screenshot coming soon</div>
             </div>
 
+            {/* ── Programmatic SEO ── */}
             <div className="use-case">
-              <h3>Run an SEO Audit</h3>
+              <div className="use-case-label">3 · Programmatic SEO</div>
+              <h3>Generate Model Comparison Landing Pages</h3>
               <p>
-                Get a comprehensive SEO analysis using the{' '}
-                <strong>seo-audit</strong> and <strong>schema-markup</strong> skills.
+                Use the <strong>programmatic-seo</strong> skill to plan
+                high-volume, templated pages that capture long-tail search traffic.
               </p>
               <CodeBlock
                 language="text"
-                code={`Run a full SEO audit on my website. Check technical SEO,
-on-page optimization, content gaps, and schema markup.
-Prioritize fixes by impact and give me an action plan
-I can execute this week.`}
+                code={`Novita AI supports 200+ models. Design a programmatic
+SEO strategy to create landing pages like:
+- "GLM-5.1 vs GPT-4o: pricing, speed, context length"
+- "Best open-source LLMs for code generation in 2025"
+- "DeepSeek vs Llama 3: which is better for RAG?"
+
+For each page template, give me: target keyword,
+estimated monthly search volume, page structure
+(H1/H2/sections), and internal linking strategy.
+Generate 10 example pages to start.`}
               />
-              <div className="step-img-placeholder">Screenshot coming soon</div>
             </div>
 
+            {/* ── CRO Audit ── */}
             <div className="use-case">
-              <h3>Plan a Product Launch</h3>
+              <div className="use-case-label">4 · CRO Audit</div>
+              <h3>Audit the Novita AI Pricing Page</h3>
               <p>
-                Build a launch strategy using the{' '}
-                <strong>launch-strategy</strong> and <strong>social-content</strong> skills.
+                Use the <strong>page-cro</strong> skill to find conversion
+                opportunities on a real page.
               </p>
               <CodeBlock
                 language="text"
-                code={`I'm launching a new feature next month. Create a launch
-plan that covers: pre-launch teaser content, launch day
-social posts, email announcement, Product Hunt copy,
-and a 2-week post-launch follow-up schedule.`}
+                code={`Go to https://novita.ai/pricing and do a CRO audit.
+Evaluate: pricing clarity, plan comparison layout,
+CTA visibility, trust signals, and FAQ coverage.
+Give me 5 specific, actionable improvements ranked
+by expected impact.`}
               />
-              <div className="step-img-placeholder">Screenshot coming soon</div>
+            </div>
+
+            {/* ── Cold Outreach ── */}
+            <div className="use-case">
+              <div className="use-case-label">5 · Cold Outreach</div>
+              <h3>Draft a Developer Outreach Email</h3>
+              <p>
+                Use the <strong>cold-email</strong> skill to write an
+                outreach email targeting AI developers.
+              </p>
+              <CodeBlock
+                language="text"
+                code={`Write a cold email from Novita AI to developers who
+currently use OpenAI's API. The pitch: same API format,
+200+ model choices, lower cost. Keep it under 120 words,
+no fluff. Include a subject line and a one-click CTA
+to try the API with $5 free credit.`}
+              />
             </div>
           </div>
         </div>
