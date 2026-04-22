@@ -49,7 +49,7 @@ export default function EmailAgentPage() {
               <CodeBlock
                 language="text"
                 code={`You are [Name], one of your daily tasks is managing my email.
-Using the himalaya skill, first configure my email account,
+Using the built-in himalaya skill, first configure my email account,
 then help me read, draft, and send emails.`}
               />
               <figure className="step-screenshot">

@@ -108,6 +108,83 @@
   font-size: 14px;
 }
 
+.step-substep {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+  margin: 28px 0 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.step-body > .step-substep:first-of-type {
+  margin-top: 22px;
+}
+
+.step-list {
+  margin: 4px 0 14px;
+  padding-left: 22px;
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.step-list li {
+  margin: 2px 0;
+}
+
+.step-body .config-group-label {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin: 14px 0 4px;
+}
+
+.step-tip {
+  margin: 22px 0 4px;
+  padding: 18px 22px;
+  background: rgba(91, 99, 224, 0.06);
+  border-left: 3px solid var(--indigo);
+  border-radius: 10px;
+}
+
+.step-tip-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.step-tip-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.step-tip-header h4 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+.step-body .step-tip p {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0 0 12px;
+}
+
+.step-body .step-tip p:last-child {
+  margin-bottom: 0;
+}
+
 .step-screenshot {
   margin: 14px 0 0;
   border-radius: 10px;

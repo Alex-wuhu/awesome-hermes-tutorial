@@ -154,9 +154,260 @@ through it step by step.`}
           </p>
 
           <div className="use-cases">
+            {/* ── Ad Creative ── */}
+            <div className="use-case">
+              <div className="use-case-label">1 · Ads &amp; Paid</div>
+              <h3>Generate Ad Variants for Novita AI</h3>
+              <p>
+                <strong>Ad creative</strong> is the headline, body, and CTA
+                combo you hand to a paid media buyer. Strong creative leans
+                on a customer pain point, fits the platform&apos;s character
+                limits, and gives the team multiple angles to A/B test.
+              </p>
+              <p>
+                Use the <strong>ad-creative</strong> skill to generate 5
+                Meta &amp; Google ad variants for novita.ai.
+              </p>
+              <CodeBlock
+                language="text"
+                code={`Use the ad-creative skill to write 5 ad variations
+for https://novita.ai targeting AI startup founders.
+For each variant, give:
+- Headline (max 30 chars)
+- Body (max 90 chars)
+- Primary CTA
+- Which customer pain point it leverages
+Cover different angles: cost, speed, model choice,
+OpenAI compatibility, and GPU availability.`}
+              />
+
+              <div className="result-label">Agent Output — 5 Variants</div>
+              <div className="ad-variants">
+                <div className="ad-variant">
+                  <div className="ad-variant-angle">Variant 1 &middot; Cost</div>
+                  <div className="ad-variant-field">
+                    <div className="ad-variant-field-label">
+                      Headline <span className="ad-variant-chars">22 chars</span>
+                    </div>
+                    <div className="ad-variant-headline">Cut AI Infra Costs 50%</div>
+                  </div>
+                  <div className="ad-variant-field">
+                    <div className="ad-variant-field-label">
+                      Body <span className="ad-variant-chars">88 chars</span>
+                    </div>
+                    <div className="ad-variant-body">
+                      Run 200+ models at half the cost. Spot GPUs, cache discounts,
+                      pay-per-token. Startup-friendly.
+                    </div>
+                  </div>
+                  <div className="ad-variant-cta-row">
+                    <span className="ad-variant-cta">Start Free</span>
+                  </div>
+                  <div className="ad-variant-pain">
+                    <div className="ad-variant-pain-label">Pain Point</div>
+                    <p>
+                      Burn rate on GPU/API spend &mdash; founders bleed cash on
+                      overpriced inference before finding PMF.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="ad-variant">
+                  <div className="ad-variant-angle">Variant 2 &middot; Speed</div>
+                  <div className="ad-variant-field">
+                    <div className="ad-variant-field-label">
+                      Headline <span className="ad-variant-chars">29 chars</span>
+                    </div>
+                    <div className="ad-variant-headline">Ship AI in Minutes, Not Months</div>
+                  </div>
+                  <div className="ad-variant-field">
+                    <div className="ad-variant-field-label">
+                      Body <span className="ad-variant-chars">89 chars</span>
+                    </div>
+                    <div className="ad-variant-body">
+                      One API, 200+ models, zero infra setup. Go from prototype to
+                      production before your next standup.
+                    </div>
+                  </div>
+                  <div className="ad-variant-cta-row">
+                    <span className="ad-variant-cta">Get Started</span>
+                  </div>
+                  <div className="ad-variant-pain">
+                    <div className="ad-variant-pain-label">Pain Point</div>
+                    <p>
+                      Slow iteration cycles &mdash; founders waste weeks on DevOps
+                      instead of shipping features and talking to users.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="ad-variant">
+                  <div className="ad-variant-angle">Variant 3 &middot; Model Choice</div>
+                  <div className="ad-variant-field">
+                    <div className="ad-variant-field-label">
+                      Headline <span className="ad-variant-chars">24 chars</span>
+                    </div>
+                    <div className="ad-variant-headline">200+ Models, One API Key</div>
+                  </div>
+                  <div className="ad-variant-field">
+                    <div className="ad-variant-field-label">
+                      Body <span className="ad-variant-chars">88 chars</span>
+                    </div>
+                    <div className="ad-variant-body">
+                      DeepSeek, Llama, Qwen, image, video, TTS &mdash; swap models in
+                      one line. No vendor lock-in, ever.
+                    </div>
+                  </div>
+                  <div className="ad-variant-cta-row">
+                    <span className="ad-variant-cta">Browse Models</span>
+                  </div>
+                  <div className="ad-variant-pain">
+                    <div className="ad-variant-pain-label">Pain Point</div>
+                    <p>
+                      Lock-in anxiety &mdash; founders who commit to a single provider
+                      get stuck when a better model drops or pricing changes.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="ad-variant">
+                  <div className="ad-variant-angle">Variant 4 &middot; OpenAI Compat</div>
+                  <div className="ad-variant-field">
+                    <div className="ad-variant-field-label">
+                      Headline <span className="ad-variant-chars">20 chars</span>
+                    </div>
+                    <div className="ad-variant-headline">Drop-In OpenAI Swap</div>
+                  </div>
+                  <div className="ad-variant-field">
+                    <div className="ad-variant-field-label">
+                      Body <span className="ad-variant-chars">89 chars</span>
+                    </div>
+                    <div className="ad-variant-body">
+                      Already using the OpenAI SDK? Change 2 lines, cut costs 50%.
+                      Zero refactors, same chat completions.
+                    </div>
+                  </div>
+                  <div className="ad-variant-cta-row">
+                    <span className="ad-variant-cta">View Docs</span>
+                  </div>
+                  <div className="ad-variant-pain">
+                    <div className="ad-variant-pain-label">Pain Point</div>
+                    <p>
+                      Migration fear &mdash; founders built on OpenAI and dread the
+                      rewrite, even as costs spiral; they need a painless exit ramp.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="ad-variant">
+                  <div className="ad-variant-angle">Variant 5 &middot; GPU Availability</div>
+                  <div className="ad-variant-field">
+                    <div className="ad-variant-field-label">
+                      Headline <span className="ad-variant-chars">23 chars</span>
+                    </div>
+                    <div className="ad-variant-headline">GPUs When You Need Them</div>
+                  </div>
+                  <div className="ad-variant-field">
+                    <div className="ad-variant-field-label">
+                      Body <span className="ad-variant-chars">87 chars</span>
+                    </div>
+                    <div className="ad-variant-body">
+                      Launch GPU instances in seconds across global regions. Train,
+                      finetune, infer &mdash; on-demand or spot.
+                    </div>
+                  </div>
+                  <div className="ad-variant-cta-row">
+                    <span className="ad-variant-cta">Explore GPUs</span>
+                  </div>
+                  <div className="ad-variant-pain">
+                    <div className="ad-variant-pain-label">Pain Point</div>
+                    <p>
+                      GPU scarcity &mdash; founders hit capacity walls mid-training
+                      or can&apos;t get A100s when competitors can, stalling their roadmap.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="result-label">Quick Reference</div>
+              <div className="seo-table-wrap">
+                <table className="seo-table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Angle</th>
+                      <th>Headline</th>
+                      <th>Pain Point</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Cost</td>
+                      <td>Cut AI Infra Costs 50%</td>
+                      <td>Burn rate on overpriced inference</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Speed</td>
+                      <td>Ship AI in Minutes, Not Months</td>
+                      <td>Slow iteration / DevOps tax</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Model Choice</td>
+                      <td>200+ Models, One API Key</td>
+                      <td>Vendor lock-in anxiety</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>OpenAI Compat</td>
+                      <td>Drop-In OpenAI Swap</td>
+                      <td>Migration fear + spiraling costs</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>GPU Availability</td>
+                      <td>GPUs When You Need Them</td>
+                      <td>GPU scarcity stalling roadmap</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* ── Lead Magnets ── */}
+            <div className="use-case">
+              <div className="use-case-label">2 · Growth &amp; Retention</div>
+              <h3>Brainstorm Lead Magnets for Novita AI</h3>
+              <p>
+                A <strong>lead magnet</strong> is a free, high-value resource
+                you trade for an email or signup &mdash; checklists, templates,
+                mini-courses, calculators. The best magnets solve one sharp
+                problem for one specific persona.
+              </p>
+              <p>
+                Use the <strong>lead-magnets</strong> skill to generate 10
+                ideas aimed at developers evaluating novita.ai.
+              </p>
+              <CodeBlock
+                language="text"
+                code={`Use the lead-magnets skill to brainstorm 10 lead
+magnet ideas for developers evaluating
+https://novita.ai. Mix formats: checklists,
+templates, mini-courses, comparison tools,
+notebooks. For each, give me:
+- Title
+- Format (PDF / Notion / GitHub repo / web tool)
+- Target persona (indie hacker / ML eng / enterprise)
+- Distribution channel (X, Reddit, HN, newsletter)`}
+              />
+              <div className="step-img-placeholder">Screenshot coming soon</div>
+            </div>
+
             {/* ── Copywriting ── */}
             <div className="use-case">
-              <div className="use-case-label">1 · Copywriting</div>
+              <div className="use-case-label">3 · Copywriting</div>
               <h3>Rewrite Landing Page Hero Copy</h3>
               <p>
                 <strong>Copywriting</strong> is the craft of writing text that drives action
@@ -222,7 +473,7 @@ Keep each headline under 10 words.`}
 
             {/* ── Social Media Content ── */}
             <div className="use-case">
-              <div className="use-case-label">2 · Social Content</div>
+              <div className="use-case-label">4 · Social Content</div>
               <h3>Generate Multi-Platform Social Posts</h3>
               <p>
                 Use the <strong>social-content</strong> skill to write
@@ -248,7 +499,7 @@ Include relevant hashtags for each platform.`}
 
             {/* ── SEO ── */}
             <div className="use-case">
-              <div className="use-case-label">3 · SEO</div>
+              <div className="use-case-label">5 · SEO</div>
               <h3>Run an SEO Audit on novita.ai</h3>
               <p>
                 Use the <strong>seo-audit</strong> and <strong>ai-seo</strong> skills
@@ -670,7 +921,7 @@ Prioritize the top 5 fixes by traffic impact.`}
 
             {/* ── Programmatic SEO ── */}
             <div className="use-case">
-              <div className="use-case-label">4 · Programmatic SEO</div>
+              <div className="use-case-label">6 · Programmatic SEO</div>
               <h3>Generate Model Comparison Landing Pages</h3>
               <p>
                 Use the <strong>programmatic-seo</strong> skill to plan
@@ -693,7 +944,7 @@ Generate 10 example pages to start.`}
 
             {/* ── CRO Audit ── */}
             <div className="use-case">
-              <div className="use-case-label">5 · CRO Audit</div>
+              <div className="use-case-label">7 · CRO Audit</div>
               <h3>Audit the Novita AI Pricing Page</h3>
               <p>
                 Use the <strong>page-cro</strong> skill to find conversion
@@ -711,7 +962,7 @@ by expected impact.`}
 
             {/* ── Cold Outreach ── */}
             <div className="use-case">
-              <div className="use-case-label">6 · Cold Outreach</div>
+              <div className="use-case-label">8 · Cold Outreach</div>
               <h3>Draft a Developer Outreach Email</h3>
               <p>
                 Use the <strong>cold-email</strong> skill to write an

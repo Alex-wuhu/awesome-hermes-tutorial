@@ -1,8 +1,44 @@
+import { useState } from 'react'
 import { Link } from 'react-router'
 import PageHero from '../components/PageHero'
 import CodeBlock from '../components/CodeBlock'
 import Step from '../components/Step'
 import './NovitaGuidePage.css'
+
+function ConfigPromptRow({ label, value, placeholder = false }) {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(value)
+    } catch {
+      const ta = document.createElement('textarea')
+      ta.value = value
+      ta.style.position = 'fixed'
+      ta.style.opacity = '0'
+      document.body.appendChild(ta)
+      ta.select()
+      document.execCommand('copy')
+      document.body.removeChild(ta)
+    }
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
+  }
+
+  return (
+    <div className="config-prompt-row">
+      <span className="config-prompt-label">{label}</span>
+      <div className={`config-prompt-value${placeholder ? ' is-placeholder' : ''}`}>
+        <code>{value}</code>
+        {!placeholder && (
+          <button type="button" className="config-prompt-copy" onClick={handleCopy}>
+            {copied ? 'Copied!' : 'Copy'}
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}
 
 export default function NovitaGuidePage() {
   return (
@@ -206,7 +242,7 @@ source ~/.bashrc
 hermes --version`}
               />
               <figure className="step-screenshot">
-                <img src="/images/hermes version.png" alt="hermes --version output" />
+                <img src="/images/hermes-version.png" alt="hermes --version output" />
               </figure>
             </Step>
 
@@ -227,53 +263,159 @@ hermes --version`}
               <p>Launch the setup wizard and choose a custom endpoint:</p>
               <CodeBlock language="shell" code="hermes setup" />
               <figure className="step-screenshot">
-                <img src="/images/setup1-chose-custom-endpoint.png" alt="Choose custom endpoint" />
+                <img src="/images/setup1-choose-custom-endpoint.png" alt="Choose custom endpoint" />
               </figure>
             </Step>
 
             <Step number={4} title="Configure Novita Endpoint">
-              <p>Enter the following when prompted:</p>
-              <CodeBlock
-                language="text"
-                code={`API base URL:   https://api.novita.ai/openai
-Model name:     zai-org/glm-5.1
-Context length: 204800`}
-              />
+              <p>
+                The setup wizard will prompt you one field at a time.
+                Paste the value on the right when each field is asked &mdash;
+                <strong> API Key</strong> is the only one unique to you:
+              </p>
+              <div className="config-prompts">
+                <ConfigPromptRow
+                  label="API base URL:"
+                  value="https://api.novita.ai/openai"
+                />
+                <ConfigPromptRow
+                  label="API Key:"
+                  value="YOUR-OWN-KEY"
+                  placeholder
+                />
+                <ConfigPromptRow
+                  label="Select model [1-96] or type name:"
+                  value="zai-org/glm-5.1"
+                />
+                <ConfigPromptRow
+                  label="Context length in tokens [leave blank for auto-detect]:"
+                  value="204800"
+                />
+                <ConfigPromptRow
+                  label="Display name [Api.novita.ai]:"
+                  value="NovitaAI"
+                />
+              </div>
               <figure className="step-screenshot">
                 <img src="/images/setup2-choose-modelname-context.png" alt="Configure model and context" />
               </figure>
             </Step>
 
-            <Step number={5} title="Connect a Messaging Channel">
+            <Step number={5} title="Connect Discord (Required for this workshop)">
               <p>
-                Hermes supports Discord, Slack, and Telegram. During setup,
-                choose a messaging port to connect.
+                Hermes supports Discord, Slack, and Telegram &mdash; but for
+                today&apos;s hands-on we&apos;ll all use <strong>Discord</strong>
+                so everyone lands in the same playground. When the wizard asks
+                for a messaging port, pick Discord:
               </p>
               <figure className="step-screenshot">
-                <img src="/images/set-up/3. connect message port.png" alt="Connect a message port" />
+                <img src="/images/setup-discord/01-select-discord.png" alt="Select Discord as the messaging platform in Hermes" />
               </figure>
 
+              <h4 className="step-substep">5a &middot; Create a Discord Application</h4>
               <p>
-                For example, choose <strong>Telegram</strong> as your channel:
+                Open the{' '}
+                <a
+                  href="https://discord.com/developers/applications"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Discord Developer Portal
+                </a>
+                , click <strong>New Application</strong>, name it something
+                like <em>&ldquo;Hermes Agent&rdquo;</em>, and hit{' '}
+                <strong>Create</strong>. When the onboarding asks what brings
+                you here, choose <strong>Build a Bot</strong>:
               </p>
               <figure className="step-screenshot">
-                <img src="/images/set-up/chosse telegram as example.png" alt="Choose Telegram as messaging channel" />
+                <img src="/images/setup-discord/02-create-discord-app.png" alt="Discord Developer Portal — create new application" />
               </figure>
 
+              <h4 className="step-substep">5b &middot; Enable Privileged Gateway Intents</h4>
               <p>
-                You&apos;ll need your Telegram Bot Token and your Telegram User ID.
-                Use a third-party bot like{' '}
-                <strong>@raw_data_bot</strong> to find your ID:
+                In the sidebar, open the <strong>Bot</strong> tab and scroll to
+                <strong> Privileged Gateway Intents</strong>. Toggle both on,
+                then click <strong>Save Changes</strong>:
+              </p>
+              <ul className="step-list">
+                <li><strong>Server Members Intent</strong> &mdash; resolves usernames</li>
+                <li><strong>Message Content Intent</strong> &mdash; lets the bot read what you send it</li>
+              </ul>
+              <p>
+                Miss this and the bot will see messages arrive but won&apos;t be
+                able to read them &mdash; easy to overlook, so double-check both
+                switches are blue.
               </p>
               <figure className="step-screenshot">
-                <img src="/images/set-up/findout you telegram by third party bot.png" alt="Find your Telegram ID via bot" />
+                <img src="/images/setup-discord/03-choose-bot-permission.png" alt="Privileged Gateway Intents toggled on, with Bot Permissions below" />
               </figure>
 
+              <h4 className="step-substep">5c &middot; Copy the Bot Token</h4>
               <p>
-                Enter your Bot Token and Telegram ID to complete the connection:
+                Still on the <strong>Bot</strong> tab, click{' '}
+                <strong>Reset Token</strong>, complete 2FA if prompted, and
+                copy the token right away &mdash; Discord only shows it once.
+                Treat it like a password.
+              </p>
+
+              <h4 className="step-substep">5d &middot; Invite the Bot to Your Server</h4>
+              <p>
+                Go to the <strong>Installation</strong> tab, enable{' '}
+                <strong>Guild Install</strong>, and pick{' '}
+                <strong>Discord Provided Link</strong>. Then set scopes and
+                permissions as below.
+              </p>
+              <p className="config-group-label">Scopes</p>
+              <ul className="step-list">
+                <li><code>bot</code></li>
+                <li><code>applications.commands</code></li>
+              </ul>
+              <p className="config-group-label">Required permissions</p>
+              <ul className="step-list">
+                <li>View Channels</li>
+                <li>Send Messages</li>
+                <li>Embed Links</li>
+                <li>Attach Files</li>
+                <li>Read Message History</li>
+              </ul>
+              <p className="config-group-label">Recommended (nice-to-have)</p>
+              <ul className="step-list">
+                <li><strong>Send Messages in Threads</strong> &mdash; respond inside threads</li>
+                <li><strong>Add Reactions</strong> &mdash; react to messages for acknowledgment</li>
+              </ul>
+              <p>
+                Copy the generated install link, open it in a new tab, choose
+                your server, and click <strong>Authorize</strong>. The bot will
+                show up offline &mdash; that&apos;s expected until we start the
+                gateway.
               </p>
               <figure className="step-screenshot">
-                <img src="/images/set-up/input your bottoken and your telegram ID.png" alt="Input bot token and Telegram ID" />
+                <img src="/images/setup-discord/install your-app-on-your-sever.png" alt="Authorize the bot to join your Discord server" />
+              </figure>
+
+              <h4 className="step-substep">5e &middot; Find Your Discord User ID</h4>
+              <p>
+                In the Discord app, open{' '}
+                <strong>Settings &rarr; Advanced</strong> and turn on{' '}
+                <strong>Developer Mode</strong>. Then right-click your own
+                username and choose <strong>Copy User ID</strong> &mdash;
+                you&apos;ll get a long number like{' '}
+                <code>284102345871466496</code>.
+              </p>
+              <figure className="step-screenshot">
+                <img src="/images/setup-discord/copy-your-userID.png" alt="Right-click your username and choose Copy User ID" />
+              </figure>
+
+              <h4 className="step-substep">5f &middot; Paste Credentials into Hermes</h4>
+              <p>
+                Back in the Hermes setup wizard, paste your{' '}
+                <strong>Bot Token</strong> and <strong>User ID</strong> when
+                prompted. Hermes writes them to{' '}
+                <code>~/.hermes/.env</code> for you and confirms setup is
+                complete:
+              </p>
+              <figure className="step-screenshot">
+                <img src="/images/setup-discord/set-up-finished.png" alt="Hermes setup finished — tool availability summary" />
               </figure>
             </Step>
 
@@ -287,6 +429,28 @@ Context length: 204800`}
                 Try asking it to search the web, write code, or manage files.
                 Hermes will use Novita AI&apos;s GLM-5.1 to power every response.
               </p>
+
+              <div className="step-tip">
+                <div className="step-tip-header">
+                  <span className="step-tip-icon">&#128161;</span>
+                  <h4>Pro tip &mdash; skip the @mention on Discord</h4>
+                </div>
+                <p>
+                  By default Hermes only replies on Discord when you{' '}
+                  <code>@</code>-mention it. Paste this message in your channel
+                  to let it respond to every message:
+                </p>
+                <CodeBlock
+                  language="text"
+                  code="Can you set the config that I don't need to ping you and you can still answer me"
+                />
+                <p>
+                  The agent reads its own config, flips the{' '}
+                  <code>discord.require_mention</code> flag, and tells you to
+                  restart the gateway. Re-run <code>hermes</code> &mdash; from
+                  then on plain messages work, no <code>@</code> needed.
+                </p>
+              </div>
             </Step>
           </div>
         </div>

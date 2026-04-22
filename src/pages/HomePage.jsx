@@ -91,7 +91,7 @@ source ~/.bashrc
 hermes --version`}
               />
               <figure className="step-screenshot">
-                <img src="/images/hermes version.png" alt="hermes --version output" />
+                <img src="/images/hermes-version.png" alt="hermes --version output" />
               </figure>
             </Step>
 
@@ -103,7 +103,7 @@ hermes --version`}
                 Choose <strong>Quick Setup</strong> to get started fast.
               </p>
               <figure className="step-screenshot">
-                <img src="/images/set-up/1,choose quick setup.png" alt="Choose quick setup" />
+                <img src="/images/setup-telegram/01-choose-quick-setup.png" alt="Choose quick setup" />
               </figure>
 
               <p>
@@ -111,7 +111,7 @@ hermes --version`}
                 OpenAI-compatible API.
               </p>
               <figure className="step-screenshot">
-                <img src="/images/set-up/2.select your provider and model.png" alt="Select your provider and model" />
+                <img src="/images/setup-telegram/02-select-provider-and-model.png" alt="Select your provider and model" />
               </figure>
             </Step>
 
@@ -121,14 +121,14 @@ hermes --version`}
                 During setup, choose a messaging port to connect.
               </p>
               <figure className="step-screenshot">
-                <img src="/images/set-up/3. connect message port.png" alt="Connect a message port" />
+                <img src="/images/setup-telegram/03-connect-message-port.png" alt="Connect a message port" />
               </figure>
 
               <p>
                 For example, choose <strong>Telegram</strong> as your channel:
               </p>
               <figure className="step-screenshot">
-                <img src="/images/set-up/chosse telegram as example.png" alt="Choose Telegram as messaging channel" />
+                <img src="/images/setup-telegram/04-choose-telegram.png" alt="Choose Telegram as messaging channel" />
               </figure>
 
               <p>
@@ -137,14 +137,14 @@ hermes --version`}
                 <strong>@raw_data_bot</strong> to find your ID:
               </p>
               <figure className="step-screenshot">
-                <img src="/images/set-up/findout you telegram by third party bot.png" alt="Find your Telegram ID via bot" />
+                <img src="/images/setup-telegram/05-find-telegram-id-via-bot.png" alt="Find your Telegram ID via bot" />
               </figure>
 
               <p>
                 Enter your Bot Token and Telegram ID to complete the connection:
               </p>
               <figure className="step-screenshot">
-                <img src="/images/set-up/input your bottoken and your telegram ID.png" alt="Input bot token and Telegram ID" />
+                <img src="/images/setup-telegram/06-input-bot-token-and-telegram-id.png" alt="Input bot token and Telegram ID" />
               </figure>
             </Step>
 
