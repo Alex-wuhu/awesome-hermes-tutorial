@@ -29,7 +29,7 @@ export default function EmailAgentPage() {
       {/* ── Method 1: Himalaya ── */}
       <section className="section">
         <div className="section-inner">
-          <span className="section-tag">Method 1</span>
+          <span className="section-tag">Setup</span>
           <div className="method-header">
             <h2>Himalaya Skill</h2>
             <span className="method-badge method-badge--simple">Simple</span>
@@ -91,21 +91,141 @@ then help me read, draft, and send emails.`}
         </div>
       </section>
 
-      {/* ── Method 2: GWS CLI ── */}
+      {/* ── Use Cases ── */}
       <section className="section">
         <div className="section-inner">
-          <span className="section-tag">Method 2</span>
+          <span className="section-tag">Use Cases</span>
+          <h2>What Can Your Email Agent Do?</h2>
+          <p className="section-lead">
+            Sending a single draft is just the beginning. Here are real workflows
+            you can set up with your Hermes Email Agent &mdash; copy any prompt
+            below and try it yourself.
+          </p>
+
+          <div className="email-use-cases">
+            {/* ── 1. Daily Inbox Digest ── */}
+            <div className="email-use-case">
+              <div className="email-use-case-label">1 &middot; Automation</div>
+              <h3>Daily Inbox Digest at 9 AM</h3>
+              <p>
+                Set up a <strong>cron job</strong> that triggers every morning
+                at 9:00 AM. Hermes reads your inbox, categorizes emails by
+                urgency, and delivers a prioritized summary &mdash; so you start
+                the day knowing exactly what needs attention.
+              </p>
+              <CodeBlock
+                language="text"
+                code={`Create a cron job that runs every day at 9:00 AM
+to read my inbox from the last 24 hours and
+generate a summary grouped by priority:
+
+🔴 Urgent — needs reply today
+🟡 Important — needs reply this week
+🟢 FYI — no action needed
+
+For each email, show: sender, subject, one-line
+summary, and suggested action. Sort urgent items
+by deadline.`}
+              />
+              <div className="step-img-placeholder">Screenshot coming soon</div>
+            </div>
+
+            {/* ── 2. Smart Reply Drafting ── */}
+            <div className="email-use-case">
+              <div className="email-use-case-label">2 &middot; Productivity</div>
+              <h3>Batch-Draft Replies for Unread Emails</h3>
+              <p>
+                Instead of replying one by one, ask Hermes to scan all unread
+                emails and <strong>draft context-aware replies</strong> for each.
+                Review them all at once, tweak if needed, then send &mdash; inbox
+                zero in minutes instead of hours.
+              </p>
+              <CodeBlock
+                language="text"
+                code={`Read all my unread emails. For each one, draft a
+reply based on the content:
+
+- If it's a meeting request → accept and confirm
+  the time, or suggest an alternative if it
+  conflicts with my calendar
+- If it's a question → answer it based on context
+- If it's a newsletter or notification → skip it
+
+Show me all drafts for review before sending.
+Format: Subject | From | Draft Reply`}
+              />
+            </div>
+
+            {/* ── 3. Inbox Cleanup ── */}
+            <div className="email-use-case">
+              <div className="email-use-case-label">3 &middot; Maintenance</div>
+              <h3>Weekly Inbox Cleanup &amp; Unsubscribe</h3>
+              <p>
+                Once a week, let Hermes audit your subscriptions. It identifies
+                newsletters you never open, promotional emails that pile up, and
+                mailing lists you forgot about &mdash; then helps you{' '}
+                <strong>unsubscribe and archive in bulk</strong>.
+              </p>
+              <CodeBlock
+                language="text"
+                code={`Analyze my inbox from the past 7 days and find:
+
+1. Newsletters & promotional emails — list them
+   with sender, frequency, and whether I opened
+   or replied to any in the past month
+2. Automated notifications (GitHub, Jira, etc.)
+   that I never interact with
+
+For each, recommend: Keep / Unsubscribe / Filter.
+Then help me unsubscribe from the ones I approve
+and create email filters to auto-archive the rest.`}
+              />
+            </div>
+
+            {/* ── 4. Email Analytics ── */}
+            <div className="email-use-case">
+              <div className="email-use-case-label">4 &middot; Insights</div>
+              <h3>Weekly Email Analytics Report</h3>
+              <p>
+                Get a data-driven view of your email habits. Hermes counts
+                incoming vs outgoing emails, identifies your most frequent
+                contacts, measures your average response time, and flags
+                emails that have been <strong>waiting for a reply too long</strong>.
+              </p>
+              <CodeBlock
+                language="text"
+                code={`Generate a weekly email analytics report for the
+past 7 days:
+
+📊 Volume: total received vs sent
+👥 Top 5 contacts by email count
+⏱️ My average reply time
+🚨 Emails older than 48 hours still unanswered
+📁 Breakdown by label/category
+
+Present it as a clean summary I can review in
+under 2 minutes.`}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Extra: GWS CLI ── */}
+      <section className="section">
+        <div className="section-inner">
+          <span className="section-tag">Extra</span>
           <div className="method-header">
             <h2>Google Workspace CLI</h2>
             <span className="method-badge method-badge--advanced">Advanced</span>
           </div>
           <p className="section-lead">
-            The official{' '}
+            Want more than just email? The official{' '}
             <a href="https://github.com/googleworkspace/cli" target="_blank" rel="noopener noreferrer">
               Google Workspace CLI
             </a>{' '}
-            gives Hermes access to nearly all Google services &mdash; not just
-            Gmail, but also Calendar, Sheets, Docs, and more.
+            gives Hermes access to nearly all Google services &mdash; Gmail,
+            Calendar, Sheets, Docs, and more.
           </p>
 
           <div className="steps">

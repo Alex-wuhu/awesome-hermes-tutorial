@@ -195,7 +195,22 @@ export default function NovitaGuidePage() {
           </p>
 
           <div className="steps">
-            <Step number={1} title="Get Your Novita AI API Key">
+            <Step number={1} title="Install Hermes Agent">
+              <p>
+                Run the one-liner installer. Works on Linux, macOS, and WSL2.
+              </p>
+              <CodeBlock
+                language="bash"
+                code={`curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
+source ~/.bashrc
+hermes --version`}
+              />
+              <figure className="step-screenshot">
+                <img src="/images/hermes version.png" alt="hermes --version output" />
+              </figure>
+            </Step>
+
+            <Step number={2} title="Get Your Novita AI API Key">
               <p>
                 Sign up at{' '}
                 <a href="https://novita.ai" target="_blank" rel="noopener noreferrer">
@@ -208,7 +223,7 @@ export default function NovitaGuidePage() {
               </figure>
             </Step>
 
-            <Step number={2} title="Run Hermes Setup">
+            <Step number={3} title="Run Hermes Setup">
               <p>Launch the setup wizard and choose a custom endpoint:</p>
               <CodeBlock language="shell" code="hermes setup" />
               <figure className="step-screenshot">
@@ -216,7 +231,7 @@ export default function NovitaGuidePage() {
               </figure>
             </Step>
 
-            <Step number={3} title="Configure Novita Endpoint">
+            <Step number={4} title="Configure Novita Endpoint">
               <p>Enter the following when prompted:</p>
               <CodeBlock
                 language="text"
@@ -229,29 +244,48 @@ Context length: 204800`}
               </figure>
             </Step>
 
-            <Step number={4} title="Verify & Start Chatting">
+            <Step number={5} title="Connect a Messaging Channel">
+              <p>
+                Hermes supports Discord, Slack, and Telegram. During setup,
+                choose a messaging port to connect.
+              </p>
+              <figure className="step-screenshot">
+                <img src="/images/set-up/3. connect message port.png" alt="Connect a message port" />
+              </figure>
+
+              <p>
+                For example, choose <strong>Telegram</strong> as your channel:
+              </p>
+              <figure className="step-screenshot">
+                <img src="/images/set-up/chosse telegram as example.png" alt="Choose Telegram as messaging channel" />
+              </figure>
+
+              <p>
+                You&apos;ll need your Telegram Bot Token and your Telegram User ID.
+                Use a third-party bot like{' '}
+                <strong>@raw_data_bot</strong> to find your ID:
+              </p>
+              <figure className="step-screenshot">
+                <img src="/images/set-up/findout you telegram by third party bot.png" alt="Find your Telegram ID via bot" />
+              </figure>
+
+              <p>
+                Enter your Bot Token and Telegram ID to complete the connection:
+              </p>
+              <figure className="step-screenshot">
+                <img src="/images/set-up/input your bottoken and your telegram ID.png" alt="Input bot token and Telegram ID" />
+              </figure>
+            </Step>
+
+            <Step number={6} title="Verify & Start Chatting" last>
               <p>Start Hermes and confirm it responds:</p>
               <CodeBlock language="bash" code="hermes" />
               <figure className="step-screenshot">
                 <img src="/images/start-conversation.png" alt="First conversation with Hermes" />
               </figure>
-            </Step>
-
-            <Step number={5} title="Connect a Messaging Channel" last>
               <p>
-                Hermes supports Discord, Slack, and Telegram. Here's a quick Telegram example:
-              </p>
-              <CodeBlock
-                language="bash"
-                code={`# In your Hermes config, add Telegram bot token
-hermes setup --channel telegram`}
-              />
-              <p className="step-note">
-                See the{' '}
-                <a href="https://github.com/lachiefish/hermes" target="_blank" rel="noopener noreferrer">
-                  Hermes docs
-                </a>{' '}
-                for Discord and Slack setup guides.
+                Try asking it to search the web, write code, or manage files.
+                Hermes will use Novita AI&apos;s GLM-5.1 to power every response.
               </p>
             </Step>
           </div>

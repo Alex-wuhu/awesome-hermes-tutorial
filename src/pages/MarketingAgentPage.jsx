@@ -220,9 +220,35 @@ Keep each headline under 10 words.`}
               </div>
             </div>
 
+            {/* ── Social Media Content ── */}
+            <div className="use-case">
+              <div className="use-case-label">2 · Social Content</div>
+              <h3>Generate Multi-Platform Social Posts</h3>
+              <p>
+                Use the <strong>social-content</strong> skill to write
+                platform-specific posts for Twitter/X, LinkedIn, and Reddit
+                about any product &mdash; tailored to each audience in seconds.
+              </p>
+              <CodeBlock
+                language="text"
+                code={`Use the social-content skill to write social media
+posts about https://novita.ai for three platforms:
+
+1. Twitter/X — punchy, under 280 chars, with hook
+2. LinkedIn — professional tone, 3-4 paragraphs,
+   highlight developer benefits and cost savings
+3. Reddit (r/MachineLearning) — technical and
+   authentic, no marketing speak, focus on the
+   200+ open-source models and API compatibility
+
+Include relevant hashtags for each platform.`}
+              />
+              <div className="step-img-placeholder">Screenshot coming soon</div>
+            </div>
+
             {/* ── SEO ── */}
             <div className="use-case">
-              <div className="use-case-label">2 · SEO</div>
+              <div className="use-case-label">3 · SEO</div>
               <h3>Run an SEO Audit on novita.ai</h3>
               <p>
                 Use the <strong>seo-audit</strong> and <strong>ai-seo</strong> skills
@@ -238,11 +264,413 @@ Keep each headline under 10 words.`}
 - Schema markup (Organization, Product, FAQ)
 Prioritize the top 5 fixes by traffic impact.`}
               />
+
+              <div className="seo-time-warning">
+                <span className="seo-time-warning-icon">&#9200;</span>
+                <div>
+                  <strong>This audit takes 10&ndash;15 minutes to complete.</strong>
+                  <p>The agent visits multiple pages, runs performance checks, and compares against competitors. Not recommended for live workshop testing &mdash; review the results below instead.</p>
+                </div>
+              </div>
+
+              <div className="result-label">Agent Output</div>
+
+              {/* ── Detailed Audit Sections ── */}
+              <div className="seo-audit-details">
+
+                {/* 1. On-Page SEO */}
+                <div className="seo-audit-detail">
+                  <h4>1. On-Page SEO: Title Tags, Meta Descriptions, H1 Structure</h4>
+                  <div className="seo-table-wrap">
+                    <table className="seo-table">
+                      <thead>
+                        <tr>
+                          <th>Page</th>
+                          <th>Title</th>
+                          <th>Issues</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Homepage</td>
+                          <td className="seo-status--good">&ldquo;Novita AI - AI &amp; Agent Cloud for Developers&rdquo; (43 chars)</td>
+                          <td>3 pairs of duplicate H2s</td>
+                        </tr>
+                        <tr>
+                          <td>/models</td>
+                          <td className="seo-status--bad">&ldquo;MoonshotAI&rdquo; (JS override)</td>
+                          <td>Dynamic JS overwrites title; H1 says &ldquo;Dedicated Endpoint&rdquo; (wrong)</td>
+                        </tr>
+                        <tr>
+                          <td>/pricing</td>
+                          <td className="seo-status--bad">&ldquo;Mistral&rdquo; (JS override)</td>
+                          <td>2 H1 tags; H3 text bugs (&ldquo;MoonshotAIMoonshotAI&rdquo;)</td>
+                        </tr>
+                        <tr>
+                          <td>/docs/guides/introduction</td>
+                          <td className="seo-status--warn">&ldquo;Introduction - Documentation&rdquo; (28 chars, generic)</td>
+                          <td>No meta description at all</td>
+                        </tr>
+                        <tr>
+                          <td>/sandbox</td>
+                          <td className="seo-status--warn">71 chars (over 60 limit)</td>
+                          <td>Title too long; H2 typo &ldquo;andConcurrency&rdquo;</td>
+                        </tr>
+                        <tr>
+                          <td>/gpus-console/templates-library</td>
+                          <td className="seo-status--good">Title ok</td>
+                          <td>No H1 tag; no headings at all</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="seo-audit-note">
+                    Critical: Client-side JS is overwriting &lt;title&gt; on /models and /pricing with random model names. Google sees nonsensical titles.
+                  </p>
+                </div>
+
+                {/* 2. Core Web Vitals */}
+                <div className="seo-audit-detail">
+                  <h4>2. Core Web Vitals &amp; Page Speed</h4>
+                  <div className="seo-table-wrap">
+                    <table className="seo-table">
+                      <thead>
+                        <tr>
+                          <th>Metric</th>
+                          <th>Mobile</th>
+                          <th>Desktop</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Performance Score</td>
+                          <td>52/100</td>
+                          <td>53/100</td>
+                          <td className="seo-status--bad">Poor</td>
+                        </tr>
+                        <tr>
+                          <td>LCP</td>
+                          <td>3.3s</td>
+                          <td>3.4s</td>
+                          <td className="seo-status--warn">Needs Work (&le;2.5s)</td>
+                        </tr>
+                        <tr>
+                          <td>CLS</td>
+                          <td>0</td>
+                          <td>0</td>
+                          <td className="seo-status--good">Good</td>
+                        </tr>
+                        <tr>
+                          <td>Speed Index</td>
+                          <td>27.1s</td>
+                          <td>12.0s</td>
+                          <td className="seo-status--bad">Poor</td>
+                        </tr>
+                        <tr>
+                          <td>Total Blocking Time</td>
+                          <td>2,630ms</td>
+                          <td>1,980ms</td>
+                          <td className="seo-status--bad">Poor (&le;200ms)</td>
+                        </tr>
+                        <tr>
+                          <td>TTFB (lab)</td>
+                          <td>70ms</td>
+                          <td>80ms</td>
+                          <td className="seo-status--good">Good</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="seo-audit-note">
+                    Root cause: 54&ndash;65 seconds of JavaScript main-thread work. Massive un-split Next.js bundles block rendering and interactivity.
+                  </p>
+                </div>
+
+                {/* 3. Internal Linking */}
+                <div className="seo-audit-detail">
+                  <h4>3. Internal Linking &amp; Site Architecture</h4>
+                  <div className="seo-list-columns">
+                    <div>
+                      <div className="seo-list-heading seo-list-heading--good">What&apos;s Working</div>
+                      <ul className="seo-list-good">
+                        <li>Canonical tags on all pages, consistent HTTPS non-www</li>
+                        <li>HTTP&rarr;HTTPS redirect (308), www&rarr;non-www redirect (301)</li>
+                        <li>HSTS header with 2-year max-age</li>
+                        <li>7 sub-sitemaps covering ~655 URLs</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div className="seo-list-heading seo-list-heading--bad">Issues Found</div>
+                      <ul className="seo-list-bad">
+                        <li>GPU dropdown is JS-only &mdash; no crawlable links to /gpus, /gpus-spot, /gpu-baremetal, /serverless</li>
+                        <li>2 orphan pages in sitemap but not linked from site</li>
+                        <li>Model sub-category pages only reachable via JS tabs</li>
+                        <li>415 docs pages are 3+ clicks deep</li>
+                        <li>Blog on separate subdomain &mdash; doesn&apos;t pass link authority to main domain</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 4. Content Gaps */}
+                <div className="seo-audit-detail">
+                  <h4>4. Content Gaps vs Competitors</h4>
+                  <div className="seo-table-wrap">
+                    <table className="seo-table">
+                      <thead>
+                        <tr>
+                          <th>Content Type</th>
+                          <th>Novita</th>
+                          <th>Together.ai</th>
+                          <th>Replicate</th>
+                          <th>Gap</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Main-site pages</td>
+                          <td>~20</td>
+                          <td>~568</td>
+                          <td>~6,300+</td>
+                          <td className="seo-status--bad">10&ndash;300x</td>
+                        </tr>
+                        <tr>
+                          <td>Model landing pages</td>
+                          <td>0</td>
+                          <td>222</td>
+                          <td>5,867</td>
+                          <td className="seo-status--bad">Critical</td>
+                        </tr>
+                        <tr>
+                          <td>&ldquo;/vs-X&rdquo; comparison pages</td>
+                          <td>0</td>
+                          <td>Several</td>
+                          <td>0</td>
+                          <td className="seo-status--warn">High</td>
+                        </tr>
+                        <tr>
+                          <td>OpenAI alternative page</td>
+                          <td>0</td>
+                          <td>Yes</td>
+                          <td>0</td>
+                          <td className="seo-status--warn">High</td>
+                        </tr>
+                        <tr>
+                          <td>Model provider pages</td>
+                          <td>0</td>
+                          <td>54</td>
+                          <td>0</td>
+                          <td className="seo-status--warn">High</td>
+                        </tr>
+                        <tr>
+                          <td>Deploy/quickstart guides</td>
+                          <td>0</td>
+                          <td>9</td>
+                          <td>Many</td>
+                          <td className="seo-status--warn">Medium</td>
+                        </tr>
+                        <tr>
+                          <td>Use-case/solution pages</td>
+                          <td>0</td>
+                          <td>1</td>
+                          <td>39</td>
+                          <td className="seo-status--warn">Medium</td>
+                        </tr>
+                        <tr>
+                          <td>Enterprise page</td>
+                          <td>404</td>
+                          <td>Yes</td>
+                          <td>No</td>
+                          <td className="seo-status--warn">Medium</td>
+                        </tr>
+                        <tr>
+                          <td>Customer case studies</td>
+                          <td>0</td>
+                          <td>18</td>
+                          <td>Some</td>
+                          <td className="seo-status--warn">Medium</td>
+                        </tr>
+                        <tr>
+                          <td>Cookbooks/tutorials</td>
+                          <td>0</td>
+                          <td>10+</td>
+                          <td>30+</td>
+                          <td className="seo-status--warn">Medium</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* 5. Schema Markup */}
+                <div className="seo-audit-detail">
+                  <h4>5. Schema Markup</h4>
+                  <p className="seo-audit-note" style={{ marginBottom: 12, marginTop: 0 }}>
+                    Effectively zero structured data. The only JSON-LD found is auto-generated by Mintlify on the docs page and credits Mintlify, not Novita AI.
+                  </p>
+                  <div className="seo-table-wrap">
+                    <table className="seo-table">
+                      <thead>
+                        <tr>
+                          <th>Schema Type</th>
+                          <th>Status</th>
+                          <th>Impact if Added</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Organization</td>
+                          <td className="seo-status--bad">Missing</td>
+                          <td>Knowledge panel in SERPs</td>
+                        </tr>
+                        <tr>
+                          <td>WebSite</td>
+                          <td className="seo-status--bad">Missing</td>
+                          <td>Sitelinks search box</td>
+                        </tr>
+                        <tr>
+                          <td>SoftwareApplication</td>
+                          <td className="seo-status--bad">Missing</td>
+                          <td>Software app rich results</td>
+                        </tr>
+                        <tr>
+                          <td>Product</td>
+                          <td className="seo-status--bad">Missing</td>
+                          <td>Product rich results with pricing</td>
+                        </tr>
+                        <tr>
+                          <td>FAQPage</td>
+                          <td className="seo-status--bad">Missing</td>
+                          <td>FAQ rich snippets &mdash; doubles SERP visibility</td>
+                        </tr>
+                        <tr>
+                          <td>BreadcrumbList</td>
+                          <td className="seo-status--bad">Missing</td>
+                          <td>Breadcrumb trail in SERPs</td>
+                        </tr>
+                        <tr>
+                          <td>Service + Offer</td>
+                          <td className="seo-status--bad">Missing</td>
+                          <td>Service listings</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              {/* Score Overview */}
+              <div className="seo-overview">
+                <div className="seo-score">
+                  <span className="seo-score-badge seo-score--red">Needs Work</span>
+                  <p>
+                    Solid technical foundations (HTTPS, canonicals, sitemaps) but major gaps
+                    in on-page optimization, page speed, content depth, and structured data.
+                  </p>
+                </div>
+                <div className="seo-metrics">
+                  <div className="seo-metric">
+                    <span className="seo-metric-value seo-metric--red">52</span>
+                    <span className="seo-metric-label">Mobile Score</span>
+                  </div>
+                  <div className="seo-metric">
+                    <span className="seo-metric-value seo-metric--red">3.3s</span>
+                    <span className="seo-metric-label">LCP</span>
+                  </div>
+                  <div className="seo-metric">
+                    <span className="seo-metric-value seo-metric--green">0</span>
+                    <span className="seo-metric-label">CLS</span>
+                  </div>
+                  <div className="seo-metric">
+                    <span className="seo-metric-value seo-metric--red">~20</span>
+                    <span className="seo-metric-label">Pages (vs 6K+)</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Top 5 Fixes */}
+              <div className="seo-fixes">
+                <div className="seo-fix">
+                  <div className="seo-fix-rank">#1</div>
+                  <div className="seo-fix-body">
+                    <div className="seo-fix-header">
+                      <h4>Launch Model-Specific Landing Pages</h4>
+                      <span className="seo-fix-impact seo-fix-impact--high">Very High Impact</span>
+                    </div>
+                    <p>
+                      200+ models but 0 dedicated pages. Together.ai has 222, Replicate has 5,867.
+                      Templatize and generate at scale for &ldquo;deepseek api&rdquo;, &ldquo;qwen api&rdquo; keywords.
+                    </p>
+                    <span className="seo-fix-estimate">+5K–50K organic visits/mo</span>
+                  </div>
+                </div>
+
+                <div className="seo-fix">
+                  <div className="seo-fix-rank">#2</div>
+                  <div className="seo-fix-body">
+                    <div className="seo-fix-header">
+                      <h4>Fix Broken Title Tags</h4>
+                      <span className="seo-fix-impact seo-fix-impact--high">High Impact</span>
+                    </div>
+                    <p>
+                      Client-side JS overwrites &lt;title&gt; on /models and /pricing with random model
+                      names (&ldquo;MoonshotAI&rdquo;, &ldquo;Mistral&rdquo;). Google sees nonsensical titles.
+                    </p>
+                    <span className="seo-fix-estimate">+20–40% CTR · Fix in 1–2 days</span>
+                  </div>
+                </div>
+
+                <div className="seo-fix">
+                  <div className="seo-fix-rank">#3</div>
+                  <div className="seo-fix-body">
+                    <div className="seo-fix-header">
+                      <h4>Add Schema Markup</h4>
+                      <span className="seo-fix-impact seo-fix-impact--high">High Impact</span>
+                    </div>
+                    <p>
+                      Zero structured data. FAQ page has 20+ Q&amp;As with no markup — adding
+                      FAQPage schema doubles SERP visibility. Also missing Organization &amp; Product schemas.
+                    </p>
+                    <span className="seo-fix-estimate">+10–25% CTR · Fix in 1–3 days</span>
+                  </div>
+                </div>
+
+                <div className="seo-fix">
+                  <div className="seo-fix-rank">#4</div>
+                  <div className="seo-fix-body">
+                    <div className="seo-fix-header">
+                      <h4>Create &ldquo;/vs&rdquo; Comparison Pages</h4>
+                      <span className="seo-fix-impact seo-fix-impact--medium">High Impact</span>
+                    </div>
+                    <p>
+                      No &ldquo;openai alternative&rdquo; or comparison pages. Build /vs-openai,
+                      /vs-together-ai, /vs-replicate to capture bottom-of-funnel searchers.
+                    </p>
+                    <span className="seo-fix-estimate">+1K–10K organic visits/mo</span>
+                  </div>
+                </div>
+
+                <div className="seo-fix">
+                  <div className="seo-fix-rank">#5</div>
+                  <div className="seo-fix-body">
+                    <div className="seo-fix-header">
+                      <h4>Fix Core Web Vitals</h4>
+                      <span className="seo-fix-impact seo-fix-impact--medium">Medium-High</span>
+                    </div>
+                    <p>
+                      Mobile performance 52/100. 54–65s of JS main-thread work. Code-split bundles,
+                      remove 76 KiB unused CSS, add font-display: swap.
+                    </p>
+                    <span className="seo-fix-estimate">+5–15% ranking improvement</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* ── Programmatic SEO ── */}
             <div className="use-case">
-              <div className="use-case-label">3 · Programmatic SEO</div>
+              <div className="use-case-label">4 · Programmatic SEO</div>
               <h3>Generate Model Comparison Landing Pages</h3>
               <p>
                 Use the <strong>programmatic-seo</strong> skill to plan
@@ -265,7 +693,7 @@ Generate 10 example pages to start.`}
 
             {/* ── CRO Audit ── */}
             <div className="use-case">
-              <div className="use-case-label">4 · CRO Audit</div>
+              <div className="use-case-label">5 · CRO Audit</div>
               <h3>Audit the Novita AI Pricing Page</h3>
               <p>
                 Use the <strong>page-cro</strong> skill to find conversion
@@ -283,7 +711,7 @@ by expected impact.`}
 
             {/* ── Cold Outreach ── */}
             <div className="use-case">
-              <div className="use-case-label">5 · Cold Outreach</div>
+              <div className="use-case-label">6 · Cold Outreach</div>
               <h3>Draft a Developer Outreach Email</h3>
               <p>
                 Use the <strong>cold-email</strong> skill to write an
