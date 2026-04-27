@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router'
 import Layout from './components/Layout'
 import HomePage from './pages/HomePage'
-import NovitaGuidePage from './pages/NovitaGuidePage'
+import NovitaSlidesPage from './pages/NovitaSlidesPage'
 import EventPage from './pages/EventPage'
 import EmailAgentPage from './pages/EmailAgentPage'
 import MarketingAgentPage from './pages/MarketingAgentPage'
@@ -12,11 +12,11 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'novita', element: <NovitaGuidePage /> },
       { path: 'event', element: <EventPage /> },
       { path: 'email-agent', element: <EmailAgentPage /> },
       { path: 'marketing-agent', element: <MarketingAgentPage /> },
       { path: 'pro-tips', element: <ProTipsPage /> },
     ],
   },
+  { path: 'novita', element: <NovitaSlidesPage /> },
 ])

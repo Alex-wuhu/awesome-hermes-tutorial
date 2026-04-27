@@ -189,3 +189,197 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ═══════════════════════════════════════════
+   Shared: Use-Case Card Grid + Modal
+   ═══════════════════════════════════════════ */
+
+.uc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.uc-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 28px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.uc-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 6px 24px rgba(232, 147, 10, 0.1);
+  transform: translateY(-3px);
+}
+
+.uc-card-icon {
+  font-size: 32px;
+  margin-bottom: 14px;
+}
+
+.uc-card h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+}
+
+.uc-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+}
+
+.uc-card-link {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 16px;
+}
+
+.uc-card-label {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+/* ── Tool card variant (indigo) ── */
+
+.uc-card--tool {
+  border-color: rgba(91, 99, 224, 0.25);
+  background: linear-gradient(135deg, rgba(91, 99, 224, 0.03), transparent);
+}
+
+.uc-card--tool:hover {
+  border-color: var(--indigo);
+  box-shadow: 0 6px 24px rgba(91, 99, 224, 0.1);
+}
+
+.uc-card--tool .uc-card-link {
+  color: var(--indigo);
+}
+
+.uc-card--tool .uc-card-label {
+  color: var(--indigo);
+  background: var(--indigo-dim);
+}
+
+/* ── Modal ── */
+
+.uc-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: uc-modal-fade-in 0.15s ease-out;
+}
+
+@keyframes uc-modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.uc-modal-panel {
+  position: relative;
+  max-width: 840px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 36px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: uc-modal-slide-up 0.2s ease-out;
+}
+
+@keyframes uc-modal-slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.uc-modal-panel .uc-card-label {
+  margin-bottom: 10px;
+}
+
+.uc-modal-panel > h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+}
+
+.uc-modal-panel > p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.uc-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--text-tertiary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.uc-modal-close:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
+@media (max-width: 1024px) {
+  .uc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .uc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .uc-modal-overlay {
+    padding: 12px;
+  }
+
+  .uc-modal-panel {
+    padding: 24px;
+    border-radius: 12px;
+  }
+}

@@ -36,52 +36,6 @@
   white-space: nowrap;
 }
 
-/* ═══════════════════════════════════════════
-   Use Cases
-   ═══════════════════════════════════════════ */
-
-.use-cases {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.use-case {
-  padding: 28px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-}
-
-.use-case-label {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  background: var(--accent-dim);
-  padding: 4px 10px;
-  border-radius: 6px;
-  margin-bottom: 14px;
-}
-
-.use-case h3 {
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.use-case > p {
-  font-size: 15px;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 16px;
-}
-
 /* ── Agent Output: Result Cards ── */
 
 .result-label {
@@ -674,6 +628,10 @@
   font-weight: 500;
   color: #27ae60;
 }
+
+/* ═══════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════ */
 
 @media (max-width: 768px) {
   .result-alternatives {

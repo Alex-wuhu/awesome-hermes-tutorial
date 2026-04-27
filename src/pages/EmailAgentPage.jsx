@@ -1,9 +1,254 @@
+import { useState, useEffect, useCallback } from 'react'
 import PageHero from '../components/PageHero'
 import CodeBlock from '../components/CodeBlock'
 import Step from '../components/Step'
 import './EmailAgentPage.css'
 
+const EMAIL_USE_CASES = [
+  {
+    id: 'digest',
+    label: '1 · Automation',
+    title: 'Daily Inbox Digest at 9 AM',
+    icon: '📬',
+    summary:
+      'Set up a cron job that reads your inbox every morning, categorizes by urgency, and delivers a prioritized summary.',
+    content: () => (
+      <>
+        <p>
+          Set up a <strong>cron job</strong> that triggers every morning
+          at 9:00 AM. Hermes reads your inbox, categorizes emails by
+          urgency, and delivers a prioritized summary &mdash; so you start
+          the day knowing exactly what needs attention.
+        </p>
+        <CodeBlock
+          language="text"
+          code={`Create a cron job that runs every day at 9:00 AM
+to read my inbox from the last 24 hours and
+generate a summary grouped by priority:
+
+🔴 Urgent — needs reply today
+🟡 Important — needs reply this week
+🟢 FYI — no action needed
+
+For each email, show: sender, subject, one-line
+summary, and suggested action. Sort urgent items
+by deadline.`}
+        />
+      </>
+    ),
+  },
+  {
+    id: 'replies',
+    label: '2 · Productivity',
+    title: 'Batch-Draft Replies for Unread Emails',
+    icon: '✍️',
+    summary:
+      'Scan all unread emails and draft context-aware replies for each — review them all at once, then send.',
+    content: () => (
+      <>
+        <p>
+          Instead of replying one by one, ask Hermes to scan all unread
+          emails and <strong>draft context-aware replies</strong> for each.
+          Review them all at once, tweak if needed, then send &mdash; inbox
+          zero in minutes instead of hours.
+        </p>
+        <CodeBlock
+          language="text"
+          code={`Read all my unread emails. For each one, draft a
+reply based on the content:
+
+- If it's a meeting request → accept and confirm
+  the time, or suggest an alternative if it
+  conflicts with my calendar
+- If it's a question → answer it based on context
+- If it's a newsletter or notification → skip it
+
+Show me all drafts for review before sending.
+Format: Subject | From | Draft Reply`}
+        />
+      </>
+    ),
+  },
+  {
+    id: 'cleanup',
+    label: '3 · Maintenance',
+    title: 'Weekly Inbox Cleanup & Unsubscribe',
+    icon: '🧹',
+    summary:
+      'Audit subscriptions, find newsletters you never open, and bulk-unsubscribe and archive.',
+    content: () => (
+      <>
+        <p>
+          Once a week, let Hermes audit your subscriptions. It identifies
+          newsletters you never open, promotional emails that pile up, and
+          mailing lists you forgot about &mdash; then helps you{' '}
+          <strong>unsubscribe and archive in bulk</strong>.
+        </p>
+        <CodeBlock
+          language="text"
+          code={`Analyze my inbox from the past 7 days and find:
+
+1. Newsletters & promotional emails — list them
+   with sender, frequency, and whether I opened
+   or replied to any in the past month
+2. Automated notifications (GitHub, Jira, etc.)
+   that I never interact with
+
+For each, recommend: Keep / Unsubscribe / Filter.
+Then help me unsubscribe from the ones I approve
+and create email filters to auto-archive the rest.`}
+        />
+      </>
+    ),
+  },
+  {
+    id: 'analytics',
+    label: '4 · Insights',
+    title: 'Weekly Email Analytics Report',
+    icon: '📊',
+    summary:
+      'Get a data-driven view of your email habits — volume, top contacts, response time, and overdue replies.',
+    content: () => (
+      <>
+        <p>
+          Get a data-driven view of your email habits. Hermes counts
+          incoming vs outgoing emails, identifies your most frequent
+          contacts, measures your average response time, and flags
+          emails that have been <strong>waiting for a reply too long</strong>.
+        </p>
+        <CodeBlock
+          language="text"
+          code={`Generate a weekly email analytics report for the
+past 7 days:
+
+📊 Volume: total received vs sent
+👥 Top 5 contacts by email count
+⏱️ My average reply time
+🚨 Emails older than 48 hours still unanswered
+📁 Breakdown by label/category
+
+Present it as a clean summary I can review in
+under 2 minutes.`}
+        />
+      </>
+    ),
+  },
+  {
+    id: 'gws-cli',
+    label: 'Tool · Advanced',
+    title: 'Google Workspace CLI',
+    icon: '🔧',
+    tool: true,
+    summary:
+      'Go beyond email — give Hermes access to Gmail, Calendar, Sheets, and Docs via the official GWS CLI.',
+    content: () => (
+      <>
+        <p>
+          The official{' '}
+          <a
+            href="https://github.com/googleworkspace/cli"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Google Workspace CLI
+          </a>{' '}
+          gives Hermes access to nearly all Google services &mdash; Gmail,
+          Calendar, Sheets, Docs, and more. Install it once, and your
+          agent gains full workspace integration.
+        </p>
+
+        <h4>Install</h4>
+        <CodeBlock
+          language="bash"
+          code={`# Install the Google Workspace CLI
+# See https://github.com/googleworkspace/cli for details
+go install github.com/googleworkspace/cli/cmd/gws@latest`}
+        />
+
+        <h4>Configure with Hermes</h4>
+        <CodeBlock
+          language="text"
+          code={`You are [Name], one of your daily tasks is managing my email
+and productivity tools. Using the gws CLI, first install
+https://github.com/googleworkspace/cli and configure my
+Gmail account, then help me manage my email.`}
+        />
+
+        <h4>What You Unlock</h4>
+        <div className="cards">
+          <div className="card">
+            <h4>Gmail</h4>
+            <p>
+              Read, draft, send, and organize emails.
+              Automate replies and manage labels.
+            </p>
+          </div>
+          <div className="card">
+            <h4>Google Calendar</h4>
+            <p>
+              Create events, check availability, send invites,
+              and manage your schedule.
+            </p>
+          </div>
+          <div className="card">
+            <h4>Google Sheets</h4>
+            <p>
+              Read and write spreadsheet data, generate reports,
+              and automate data entry.
+            </p>
+          </div>
+          <div className="card">
+            <h4>Google Docs</h4>
+            <p>
+              Create, edit, and format documents.
+              Generate content and summarize files.
+            </p>
+          </div>
+        </div>
+      </>
+    ),
+  },
+]
+
+function UseCaseModal({ uc, onClose }) {
+  const handleOverlay = useCallback(
+    (e) => {
+      if (e.target === e.currentTarget) onClose()
+    },
+    [onClose],
+  )
+
+  useEffect(() => {
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = prev
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [onClose])
+
+  return (
+    <div className="uc-modal-overlay" onClick={handleOverlay}>
+      <div className="uc-modal-panel">
+        <button type="button" className="uc-modal-close" onClick={onClose}>
+          &times;
+        </button>
+        <div className="uc-card-label">{uc.label}</div>
+        <h3>{uc.title}</h3>
+        {uc.content()}
+      </div>
+    </div>
+  )
+}
+
 export default function EmailAgentPage() {
+  const [active, setActive] = useState(null)
+  const activeUc = active ? EMAIL_USE_CASES.find((u) => u.id === active) : null
+
   return (
     <>
       <PageHero
@@ -12,21 +257,7 @@ export default function EmailAgentPage() {
         subtitle="Automate email drafting, replies, and inbox management with Hermes"
       />
 
-      {/* ── Intro ── */}
-      <section className="section">
-        <div className="section-inner">
-          <span className="section-tag">Overview</span>
-          <h2>Two Ways to Manage Email</h2>
-          <p className="section-lead">
-            Hermes Agent can manage your email with a single prompt.
-            Choose the method that fits your needs &mdash; a quick setup
-            with the built-in Himalaya skill, or full Google Workspace
-            integration via the official GWS CLI.
-          </p>
-        </div>
-      </section>
-
-      {/* ── Method 1: Himalaya ── */}
+      {/* ── Himalaya Setup ── */}
       <section className="section">
         <div className="section-inner">
           <span className="section-tag">Setup</span>
@@ -91,211 +322,40 @@ then help me read, draft, and send emails.`}
         </div>
       </section>
 
-      {/* ── Use Cases ── */}
+      {/* ── Use Cases + GWS Tool Card ── */}
       <section className="section">
         <div className="section-inner">
           <span className="section-tag">Use Cases</span>
           <h2>What Can Your Email Agent Do?</h2>
           <p className="section-lead">
             Sending a single draft is just the beginning. Here are real workflows
-            you can set up with your Hermes Email Agent &mdash; copy any prompt
-            below and try it yourself.
+            you can set up with your Hermes Email Agent &mdash; click any card
+            to see the full prompt.
           </p>
 
-          <div className="email-use-cases">
-            {/* ── 1. Daily Inbox Digest ── */}
-            <div className="email-use-case">
-              <div className="email-use-case-label">1 &middot; Automation</div>
-              <h3>Daily Inbox Digest at 9 AM</h3>
-              <p>
-                Set up a <strong>cron job</strong> that triggers every morning
-                at 9:00 AM. Hermes reads your inbox, categorizes emails by
-                urgency, and delivers a prioritized summary &mdash; so you start
-                the day knowing exactly what needs attention.
-              </p>
-              <CodeBlock
-                language="text"
-                code={`Create a cron job that runs every day at 9:00 AM
-to read my inbox from the last 24 hours and
-generate a summary grouped by priority:
-
-🔴 Urgent — needs reply today
-🟡 Important — needs reply this week
-🟢 FYI — no action needed
-
-For each email, show: sender, subject, one-line
-summary, and suggested action. Sort urgent items
-by deadline.`}
-              />
-              <div className="step-img-placeholder">Screenshot coming soon</div>
-            </div>
-
-            {/* ── 2. Smart Reply Drafting ── */}
-            <div className="email-use-case">
-              <div className="email-use-case-label">2 &middot; Productivity</div>
-              <h3>Batch-Draft Replies for Unread Emails</h3>
-              <p>
-                Instead of replying one by one, ask Hermes to scan all unread
-                emails and <strong>draft context-aware replies</strong> for each.
-                Review them all at once, tweak if needed, then send &mdash; inbox
-                zero in minutes instead of hours.
-              </p>
-              <CodeBlock
-                language="text"
-                code={`Read all my unread emails. For each one, draft a
-reply based on the content:
-
-- If it's a meeting request → accept and confirm
-  the time, or suggest an alternative if it
-  conflicts with my calendar
-- If it's a question → answer it based on context
-- If it's a newsletter or notification → skip it
-
-Show me all drafts for review before sending.
-Format: Subject | From | Draft Reply`}
-              />
-            </div>
-
-            {/* ── 3. Inbox Cleanup ── */}
-            <div className="email-use-case">
-              <div className="email-use-case-label">3 &middot; Maintenance</div>
-              <h3>Weekly Inbox Cleanup &amp; Unsubscribe</h3>
-              <p>
-                Once a week, let Hermes audit your subscriptions. It identifies
-                newsletters you never open, promotional emails that pile up, and
-                mailing lists you forgot about &mdash; then helps you{' '}
-                <strong>unsubscribe and archive in bulk</strong>.
-              </p>
-              <CodeBlock
-                language="text"
-                code={`Analyze my inbox from the past 7 days and find:
-
-1. Newsletters & promotional emails — list them
-   with sender, frequency, and whether I opened
-   or replied to any in the past month
-2. Automated notifications (GitHub, Jira, etc.)
-   that I never interact with
-
-For each, recommend: Keep / Unsubscribe / Filter.
-Then help me unsubscribe from the ones I approve
-and create email filters to auto-archive the rest.`}
-              />
-            </div>
-
-            {/* ── 4. Email Analytics ── */}
-            <div className="email-use-case">
-              <div className="email-use-case-label">4 &middot; Insights</div>
-              <h3>Weekly Email Analytics Report</h3>
-              <p>
-                Get a data-driven view of your email habits. Hermes counts
-                incoming vs outgoing emails, identifies your most frequent
-                contacts, measures your average response time, and flags
-                emails that have been <strong>waiting for a reply too long</strong>.
-              </p>
-              <CodeBlock
-                language="text"
-                code={`Generate a weekly email analytics report for the
-past 7 days:
-
-📊 Volume: total received vs sent
-👥 Top 5 contacts by email count
-⏱️ My average reply time
-🚨 Emails older than 48 hours still unanswered
-📁 Breakdown by label/category
-
-Present it as a clean summary I can review in
-under 2 minutes.`}
-              />
-            </div>
+          <div className="uc-grid">
+            {EMAIL_USE_CASES.map((uc) => (
+              <button
+                key={uc.id}
+                className={`uc-card${uc.tool ? ' uc-card--tool' : ''}`}
+                onClick={() => setActive(uc.id)}
+              >
+                <div className="uc-card-icon">{uc.icon}</div>
+                <div className="uc-card-label">{uc.label}</div>
+                <h3>{uc.title}</h3>
+                <p>{uc.summary}</p>
+                <span className="uc-card-link">
+                  {uc.tool ? 'View setup guide →' : 'View prompt →'}
+                </span>
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── Extra: GWS CLI ── */}
-      <section className="section">
-        <div className="section-inner">
-          <span className="section-tag">Extra</span>
-          <div className="method-header">
-            <h2>Google Workspace CLI</h2>
-            <span className="method-badge method-badge--advanced">Advanced</span>
-          </div>
-          <p className="section-lead">
-            Want more than just email? The official{' '}
-            <a href="https://github.com/googleworkspace/cli" target="_blank" rel="noopener noreferrer">
-              Google Workspace CLI
-            </a>{' '}
-            gives Hermes access to nearly all Google services &mdash; Gmail,
-            Calendar, Sheets, Docs, and more.
-          </p>
-
-          <div className="steps">
-            <Step number={1} title="Install GWS CLI">
-              <p>
-                Install the Google Workspace CLI from the official repository:
-              </p>
-              <CodeBlock
-                language="bash"
-                code={`# Install the Google Workspace CLI
-# See https://github.com/googleworkspace/cli for details
-go install github.com/googleworkspace/cli/cmd/gws@latest`}
-              />
-              <div className="step-img-placeholder">Screenshot coming soon</div>
-            </Step>
-
-            <Step number={2} title="Prompt Hermes to Configure Gmail">
-              <p>
-                Start Hermes and give it the following prompt to set up Gmail
-                via the GWS CLI:
-              </p>
-              <CodeBlock
-                language="text"
-                code={`You are [Name], one of your daily tasks is managing my email
-and productivity tools. Using the gws CLI, first install
-https://github.com/googleworkspace/cli and configure my
-Gmail account, then help me manage my email.`}
-              />
-              <div className="step-img-placeholder">Screenshot coming soon</div>
-            </Step>
-
-            <Step number={3} title="Beyond Email — Google Workspace" last>
-              <p>
-                With the GWS CLI, your Hermes Agent can interact with almost
-                every Google Workspace service. Here&apos;s what you can do:
-              </p>
-              <div className="cards">
-                <div className="card">
-                  <h4>Gmail</h4>
-                  <p>
-                    Read, draft, send, and organize emails.
-                    Automate replies and manage labels.
-                  </p>
-                </div>
-                <div className="card">
-                  <h4>Google Calendar</h4>
-                  <p>
-                    Create events, check availability, send invites,
-                    and manage your schedule.
-                  </p>
-                </div>
-                <div className="card">
-                  <h4>Google Sheets</h4>
-                  <p>
-                    Read and write spreadsheet data, generate reports,
-                    and automate data entry.
-                  </p>
-                </div>
-                <div className="card">
-                  <h4>Google Docs</h4>
-                  <p>
-                    Create, edit, and format documents.
-                    Generate content and summarize files.
-                  </p>
-                </div>
-              </div>
-            </Step>
-          </div>
-        </div>
-      </section>
+      {activeUc && (
+        <UseCaseModal uc={activeUc} onClose={() => setActive(null)} />
+      )}
     </>
   )
 }
