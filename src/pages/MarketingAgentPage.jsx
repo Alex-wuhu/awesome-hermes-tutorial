@@ -4,10 +4,128 @@ import CodeBlock from '../components/CodeBlock'
 import Step from '../components/Step'
 import './MarketingAgentPage.css'
 
+function RedditLogo() {
+  return (
+    <span className="reddit-logo" aria-label="Reddit">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="16" fill="#ff4500" />
+        <circle cx="11.1" cy="15.4" r="1.8" fill="#ffffff" />
+        <circle cx="20.9" cy="15.4" r="1.8" fill="#ffffff" />
+        <path
+          d="M10.8 20.1c1.35 1.2 3.05 1.8 5.2 1.8s3.85-.6 5.2-1.8"
+          fill="none"
+          stroke="#ffffff"
+          strokeLinecap="round"
+          strokeWidth="1.75"
+        />
+        <path
+          d="M16 10.2l1.3-5 4.5 1"
+          fill="none"
+          stroke="#ffffff"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.45"
+        />
+        <circle cx="23.4" cy="6.6" r="1.8" fill="#ffffff" />
+        <path
+          d="M7.4 13.6c1.9-2.1 4.9-3.3 8.6-3.3s6.7 1.2 8.6 3.3"
+          fill="none"
+          stroke="#ffffff"
+          strokeLinecap="round"
+          strokeWidth="1.6"
+        />
+      </svg>
+    </span>
+  )
+}
+
 const USE_CASES = [
   {
+    id: 'reddit-listening',
+    label: '1 · Reddit Intelligence',
+    title: 'Find Real Customer Pain in Reddit Communities',
+    icon: <RedditLogo />,
+    summary:
+      'Quickly search Reddit for 3 real, cited posts showing AI inference pain points — then draft human-reviewed replies.',
+    content: () => (
+      <>
+        <p>
+          Reddit is useful because users describe real problems in public threads.
+          For a fast demo, Hermes only needs to find a few cited posts, summarize
+          the pain, and draft human-reviewed replies.
+        </p>
+        <div className="reddit-policy-note">
+          <RedditLogo />
+          <div>
+            <strong>Production boundary:</strong>
+            <p>
+              This use case is listening only. Do not post, comment, DM, vote, or
+              follow anyone. Every opportunity must include a real Reddit URL.
+            </p>
+          </div>
+        </div>
+        <CodeBlock
+          language="text"
+          code={`Act as a Reddit community intelligence assistant for Novita AI.
+
+Search these Reddit communities:
+- r/LocalLLaMA
+- r/OpenAI
+
+Find 3 recent posts or comments where users mention:
+- expensive inference APIs
+- OpenAI / Together / Fireworks / OpenRouter pricing issues
+- GPU deployment pain
+- looking for cheaper or open-source LLM hosting
+
+For each opportunity:
+1. Reddit URL
+2. Subreddit and post title
+3. Short evidence snippet
+4. User pain point
+5. Fit for Novita AI from 1-5
+6. Human-reviewed reply draft
+
+Only use opportunities you can cite with real Reddit URLs.
+Do not invent posts, usernames, quotes, or metrics.
+Do not post, comment, vote, DM, or follow anyone.
+
+Return the 3 opportunities in a compact table and save them to reddit_intelligence.md.`}
+        />
+        <div className="reddit-flow">
+          <div><span>1</span>Search</div>
+          <div><span>2</span>Cite</div>
+          <div><span>3</span>Summarize</div>
+          <div><span>4</span>Draft</div>
+          <div><span>5</span>Review</div>
+        </div>
+        <div className="reddit-reference-box">
+          <h4>Agent output must include references</h4>
+          <ul>
+            <li>
+              <strong>Reddit URL</strong>
+              <span>Direct link to the source post or comment used as the signal.</span>
+            </li>
+            <li>
+              <strong>Source context</strong>
+              <span>Subreddit and post title are enough for the fast demo.</span>
+            </li>
+            <li>
+              <strong>Evidence snippet</strong>
+              <span>A short quote or paraphrase from the post showing the pain point.</span>
+            </li>
+            <li>
+              <strong>No hallucinated leads</strong>
+              <span>If the agent cannot cite a real Reddit source, it must exclude that opportunity.</span>
+            </li>
+          </ul>
+        </div>
+      </>
+    ),
+  },
+  {
     id: 'competitor-intel',
-    label: '1 · Competitive Intelligence',
+    label: '2 · Competitive Intelligence',
     title: 'Find Unhappy Users of Competitor APIs',
     icon: '🕵️',
     summary:
@@ -47,7 +165,7 @@ Save everything to a folder called novita_competitor_intel.`}
   },
   {
     id: 'lead-prospecting',
-    label: '2 · Lead Prospecting',
+    label: '3 · Lead Prospecting',
     title: 'Find High-Intent Leads Across Developer Communities',
     icon: '🔍',
     summary:
@@ -84,7 +202,7 @@ Also open the best opportunity in browser and prefill the reply draft.`}
   },
   {
     id: 'lead-magnets',
-    label: '3 · Growth & Retention',
+    label: '4 · Growth & Retention',
     title: 'Brainstorm Lead Magnets for Novita AI',
     icon: '🧲',
     summary:
@@ -118,7 +236,7 @@ notebooks. For each, give me:
   },
   {
     id: 'seo',
-    label: '4 · SEO',
+    label: '5 · SEO',
     title: 'Run an SEO Audit on novita.ai',
     icon: '📈',
     summary:
